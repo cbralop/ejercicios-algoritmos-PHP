@@ -1,0 +1,120 @@
+<?php
+    /**
+     * EJERCICIO 1 
+     * Dado el arreglo (1,2,2,4,5,6,7,8,8,8) mostrar el numero de mayor aparicion
+    */
+    $myArray = array(1,2,2,4,5,6,7,8,8,8);
+
+    $aparece = 0;
+    $numero = $myArray[0];
+
+    for ($i=0; $i < count($myArray); $i++) { 
+        if ($numero == $myArray[$i]) {
+            $aparece++;
+        }else{
+            $numero = $myArray[$i];
+            $aparece = 1;
+        }
+    }
+
+    echo "Longest: ".$aparece;
+    echo "<br>";
+    echo "Number: ".$numero;
+
+    echo "<br><br><br><br>";
+
+    /**
+     * EJERCICIO 2 
+     * dado el arreglo (1,2,1,3,3,1,2,1,5,1), listar las apariciones de cada numero hasta llegar al mayor existente
+    */
+
+    $myArray = array(1,2,1,3,3,1,2,1,5,1);
+
+//una forma de hacerlo
+    $arreglo = array_count_values($myArray);
+
+    $alto = max($myArray);
+    $arregloFinal[0] = 0;
+    for ($i=1; $i <= $alto; $i++) { 
+        if(isset($arreglo[$i])){
+            array_push($arregloFinal, $arreglo[$i]);
+            echo $i.' : '.$arregloFinal[$i];
+            echo "<br>";
+        }else{
+            array_push($arregloFinal, 0);
+            echo $i.' : '.$arregloFinal[$i];
+            echo "<br>";
+        }
+    }
+
+    echo "<br><br><br><br>";
+
+//otra forma de hacerlo
+    $asterisco = "";
+    for ($i=1; $i < count($myArray) ; $i++) { 
+        for ($j=0; $j < count($myArray); $j++) { 
+            if($i == $myArray[$j]){
+                $asterisco .= "*";
+            }
+        }
+
+        if($i <= $alto){
+            echo $i.' : '.$asterisco;
+            echo $asterisco = "";
+            echo "<br>";
+        }
+    }
+
+    echo "<br><br><br><br>";
+    
+    /**
+     * EJERCICIO 3 
+     * Dado $n=numero dibuje una X con letras X y el caracter de _, el tamaño de la X se basa en la var $n
+     * Ej.
+     * $n=5
+     * 
+     * X___X
+     * _X_X_
+     * __X__
+     * _X_X_
+     * X___X
+     * 
+     * $n=6
+     * 
+     * X____X
+     * _X__X_
+     * __XX__
+     * __XX__
+     * _X__X_
+     * X____X
+     * 
+     * Si $n=0 entonces mostrar ERROR
+    */
+
+    $n=5;
+    $m = $n-1;
+    $x = 0;
+    for ($i=0; $i < $n; $i++) { 
+        for ($j=0; $j < $n; $j++) {
+
+            if($j == $x){
+                $matriz[$i][$j] = "X";
+            }else{
+                $matriz[$i][$j] = "_";
+            }
+
+            if($j == $m){
+                $matriz[$i][$j] = "X";
+            }
+        }
+        $x++;
+        $m--;
+    }
+
+    for ($i=0; $i < $n; $i++) { 
+        for ($j=0; $j < $n; $j++) {
+            echo $matriz[$i][$j];
+        }
+        echo "<br>";
+    }
+?>
